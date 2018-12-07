@@ -1,3 +1,4 @@
+const input = ``
 const graph = {}
 
 input.split('\n').forEach(text => {
@@ -23,10 +24,10 @@ function findPath(result, seconds) {
 
     if (queue.length === 0) return seconds
     seconds++
-    
+
     for (let index = 0; index < 5; index++) {
         let worker = ({ ...queue[index] }).self
-        
+
         if (graph[worker] && --graph[worker].time < 1) {
             Object.values(graph).forEach(point => delete point['nbr'][worker])
             delete graph[worker]
@@ -34,3 +35,5 @@ function findPath(result, seconds) {
     }
     return findPath(result, seconds)
 }
+
+console.log(findPath('', 0))
