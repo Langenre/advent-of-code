@@ -16,11 +16,10 @@ input.split('\n').forEach(text => {
     graph[pointB]['nbr'][pointA] = true
 })
 
-function findPath(result, seconds, path) {
+function findPath(result, seconds) {
     let queue = Object
         .values(graph)
         .filter(points=> Object.keys(points.nbr).length === 0)
-        .sort((pointA, pointB) => pointA.self < pointB.self ? -1 : 1)
 
     if (queue.length === 0) return seconds
     seconds++
@@ -29,10 +28,9 @@ function findPath(result, seconds, path) {
         worker = ({ ...queue[index] }).self || ''
         
         if (graph[worker] && --graph[worker].time < 1) {
-            path.concat(worker)
             Object.values(graph).forEach(point => delete point['nbr'][worker])
             delete graph[worker]
         }
     }
-    return findPath(result, seconds, path)
+    return findPath(result, seconds)
 }
