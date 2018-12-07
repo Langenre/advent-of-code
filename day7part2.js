@@ -26,9 +26,8 @@ function findPath(result, seconds, path, workers) {
     seconds++
     queue = queue.filter(point => workers.indexOf(point.self) === -1)
     
-    let counter = 0
     workers.reduce((___, worker, index) => {
-        worker = ({ ...queue[counter++] }).self || ''
+        worker = ({ ...queue[index] }).self || ''
         
         if (graph[worker] && --graph[worker].time < 1) {
             workers[index] = ''
