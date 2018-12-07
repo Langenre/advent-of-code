@@ -16,7 +16,7 @@ input.split('\n').forEach(text => {
     graph[pointB]['nbr'][pointA] = true
 })
 
-function findPath(result, seconds, path, workers) {
+function findPath(result, seconds, path) {
     let queue = Object
         .values(graph)
         .filter(points=> Object.keys(points.nbr).length === 0)
@@ -24,18 +24,15 @@ function findPath(result, seconds, path, workers) {
 
     if (queue.length === 0) return seconds
     seconds++
-    queue = queue.filter(point => workers.indexOf(point.self) === -1)
     
-    workers.reduce((___, worker, index) => {
+    for (let index = 0; index < 5; index++) {
         worker = ({ ...queue[index] }).self || ''
         
         if (graph[worker] && --graph[worker].time < 1) {
-            workers[index] = ''
             path.concat(worker)
             Object.values(graph).forEach(point => delete point['nbr'][worker])
             delete graph[worker]
         }
-    }, undefined)
-
-    return findPath(result, seconds, path, workers)
+    }
+    return findPath(result, seconds, path)
 }
