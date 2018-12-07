@@ -25,7 +25,7 @@ function findPath(result, seconds) {
     seconds++
     
     for (let index = 0; index < 5; index++) {
-        worker = ({ ...queue[index] }).self || ''
+        let worker = ({ ...queue[index] }).self
         
         if (graph[worker] && --graph[worker].time < 1) {
             Object.values(graph).forEach(point => delete point['nbr'][worker])
