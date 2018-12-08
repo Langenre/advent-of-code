@@ -5,7 +5,7 @@ const result = input.split('\n').reduce((matches, text) => {
     let counts = {}
 
     for (let char of chars) {
-		counts[char] = (counts[char] || 0) + 1
+        counts[char] = (counts[char] || 0) + 1
     }
     
     if (Object.values(counts).includes(2)) matches['doubles']++
