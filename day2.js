@@ -9,7 +9,7 @@ const result = input.split('\n').reduce((matches, text) => {
     }
     
     if (Object.values(counts).includes(2)) matches['doubles']++
-	  if (Object.values(counts).includes(3)) matches['triples']++
+    if (Object.values(counts).includes(3)) matches['triples']++
     
     return matches
     
