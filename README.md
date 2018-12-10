@@ -22,6 +22,11 @@ The JavaScript parser will automatically add a semicolon when, during the parsin
     
 Uncaught ReferenceError: x is not defined at <anonymous>:2:4
 
+    function abc() { return 
+        1; }
+
+This function returns undefined when called.
+
 #### The Array Incident That Left Everyone Shocked
 
     let twoDimensionalArray = Array(12).fill(Array(64).fill('.'))	
