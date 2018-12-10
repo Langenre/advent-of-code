@@ -4,11 +4,9 @@ let input = ``.split('\n').map(text => {
 })
 
 while(true) {
-    
     input = input.map(star => 
         ({ 
-            vy: star.vy,
-            vx: star.vx,
+            ...star,
             x: star.x + star.vx,
             y: star.y + star.vy,
         })
@@ -22,16 +20,13 @@ while(true) {
 
         let mapOfStars = Array(10).fill().map(y => Array(62).fill('.'))
 
-        input.forEach(star => {
-            mapOfStars[(star.y - ymin)][(star.x - xmin)] = '#'
-        })
+        input.forEach(star => mapOfStars[(star.y - ymin)][(star.x - xmin)] = '#')
 
-        mapOfStars.forEach(yacis => {
-            yacis.forEach(x => {
-                process.stdout.write(x)
-            })
+        mapOfStars.forEach(y => {
+            y.forEach(x => process.stdout.write(x))
             process.stdout.write('\n')
         })
+        
         sleep(10)
     }
 }
