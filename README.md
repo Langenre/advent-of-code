@@ -35,5 +35,10 @@ There is a difference...
 
     let twoDimensionalArray = Array(12).fill().map(y => Array(64).fill('.'))
     
+#### undefined !== undefined
 
-  
+The problem with using undefined is that undefined is not a reserved word (it is actually a property of the global object). That is, undefined is a permissible variable name, so you could assign a new value to it at your own caprice.
+    
+    let undefined = 5;
+    if (options !== undefined) {}
+    if (options === void 0) {}
